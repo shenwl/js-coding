@@ -18,7 +18,8 @@ async function bfs(container: HTMLDivElement, map: MapItem[], start: Coordinate,
     queue.push([x, y]);
   }
 
-  const insert = async ([x, y]: [number, number]) => {
+  const insert = async (point: Coordinate, pre: Coordinate) => {
+    const [x, y] = point;
     const index = 100 * y + x;
     // 已存在
     if ((visited[x] || []).includes(y)) {
@@ -34,22 +35,30 @@ async function bfs(container: HTMLDivElement, map: MapItem[], start: Coordinate,
     }
     const cell = container.children[index] as HTMLDivElement;
     cell.style.backgroundColor = 'lightgreen';
-    map[index] = 2;
+    map[index] = pre;
     await sleep(1);
     visit([x, y]);
   }
 
   while (queue.length) {
-    let [x, y] = queue.shift();
+    const pre = queue.shift();
+    let [x, y] = pre;
     if (x === end[0] && (y === end[1])) {
-      return true;
+      const path: MapItem[] = [];
+      while (x !== start[0] || (y !== start[1])) {
+        path.push([x, y]);
+        const i = y * 100 + x;
+        [x, y] = map[i] as Coordinate;
+        (container.children[i] as HTMLDivElement).style.backgroundColor = 'pink';
+      }
+      return path;
     }
-    await insert([x - 1, y]);
-    await insert([x + 1, y]);
-    await insert([x, y - 1]);
-    await insert([x, y + 1]);
+    await insert([x - 1, y], pre);
+    await insert([x + 1, y], pre);
+    await insert([x, y - 1], pre);
+    await insert([x, y + 1], pre);
   }
-  return false;
+  return null;
 }
 
 export default function findPath(container: HTMLDivElement, map: MapItem[], start: Coordinate, end: Coordinate) {
