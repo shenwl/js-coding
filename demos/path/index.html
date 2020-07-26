@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-hans">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,17 +17,29 @@
       border-right: solid 1px white;
       vertical-align: middle;
     }
-    #root {
-      width: 1001px;
+    #container {
+      width: 1101px;
       display: flex;
       flex-wrap: wrap;
     }
-
+    .buttons {
+      margin: 10px;
+    }
+    .button {
+      font-size: 16px;
+      padding: 6px 12px;
+    }
   </style>
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <div id="container"></div>
+    <div class="buttons">
+      <button class="button" id="save-btn">save</button>
+      <button class="button" id="clear-btn">clear</button>
+    </div>
+  </div>
 
   <script src="__APP__.js"></script>
 </body>
