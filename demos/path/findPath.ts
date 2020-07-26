@@ -57,6 +57,11 @@ async function bfs(container: HTMLDivElement, map: MapItem[], start: Coordinate,
     await insert([x + 1, y], pre);
     await insert([x, y - 1], pre);
     await insert([x, y + 1], pre);
+
+    await insert([x - 1, y - 1], pre);
+    await insert([x + 1, y - 1], pre);
+    await insert([x - 1, y + 1], pre);
+    await insert([x + 1, y + 1], pre);
   }
   return null;
 }
