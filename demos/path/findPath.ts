@@ -33,11 +33,11 @@ async function bfs(container: HTMLDivElement, map: MapItem[], start: Coordinate,
     if (x < 0 || y < 0 || x > 100 || y > 100) {
       return;
     }
-    const cell = container.children[index] as HTMLDivElement;
-    cell.style.backgroundColor = 'lightgreen';
+    // const cell = container.children[index] as HTMLDivElement;
+    // cell.style.backgroundColor = 'lightgreen';
     map[index] = pre;
     visit([x, y]);
-    await sleep(1);
+    // await sleep(1);
   }
 
   while (queue.length) {
