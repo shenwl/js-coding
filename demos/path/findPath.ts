@@ -33,6 +33,7 @@ async function bfs(container: HTMLDivElement, map: MapItem[], start: Coordinate,
     if (x < 0 || y < 0 || x > 100 || y > 100) {
       return;
     }
+    // @todo：检测是否有墙
     // const cell = container.children[index] as HTMLDivElement;
     // cell.style.backgroundColor = 'lightgreen';
     map[index] = pre;
