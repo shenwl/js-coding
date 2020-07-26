@@ -36,8 +36,8 @@ async function bfs(container: HTMLDivElement, map: MapItem[], start: Coordinate,
     const cell = container.children[index] as HTMLDivElement;
     cell.style.backgroundColor = 'lightgreen';
     map[index] = pre;
-    await sleep(1);
     visit([x, y]);
+    await sleep(1);
   }
 
   while (queue.length) {
