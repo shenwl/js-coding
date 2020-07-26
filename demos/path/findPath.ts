@@ -19,21 +19,23 @@ async function bfs(container: HTMLDivElement, map: MapItem[], start: Coordinate,
   }
 
   const insert = async ([x, y]: [number, number]) => {
+    const index = 100 * y + x;
     // 已存在
     if ((visited[x] || []).includes(y)) {
       return;
     }
     // 不为0走不了
-    if (map[100 * y + x] !== 0) {
+    if (map[index] !== 0) {
       return;
     }
     // 到边了
     if (x < 0 || y < 0 || x > 100 || y > 100) {
       return;
     }
-    const cell = container.children[y * 100 + x] as HTMLDivElement;
+    const cell = container.children[index] as HTMLDivElement;
     cell.style.backgroundColor = 'lightgreen';
-    await sleep(5);
+    map[index] = 2;
+    await sleep(1);
     visit([x, y]);
   }
 
