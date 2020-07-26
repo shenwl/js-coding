@@ -59,10 +59,11 @@ async function bfs(container: HTMLDivElement, map: MapItem[], start: Coordinate,
     await insert([x, y - 1], pre);
     await insert([x, y + 1], pre);
 
-    await insert([x - 1, y - 1], pre);
-    await insert([x + 1, y - 1], pre);
-    await insert([x - 1, y + 1], pre);
-    await insert([x + 1, y + 1], pre);
+    // @todo：完成墙检测后放开
+    // await insert([x - 1, y - 1], pre);
+    // await insert([x + 1, y - 1], pre);
+    // await insert([x - 1, y + 1], pre);
+    // await insert([x + 1, y + 1], pre);
   }
   return null;
 }
