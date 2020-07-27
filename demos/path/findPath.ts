@@ -1,4 +1,5 @@
 import { MapItem, Coordinate } from "./type";
+import sleep from './sleep';
 import Sorted from './sorted';
 
 function distance(p: Coordinate, end: Coordinate) {
@@ -40,11 +41,11 @@ async function bfs(container: HTMLDivElement, map: MapItem[], start: Coordinate,
       return;
     }
     // @todo：检测是否有墙
-    // const cell = container.children[index] as HTMLDivElement;
-    // cell.style.backgroundColor = 'lightgreen';
+    const cell = container.children[index] as HTMLDivElement;
+    cell.style.backgroundColor = 'lightgreen';
     map[index] = pre;
     visit([x, y]);
-    // await sleep(1);
+    await sleep(1);
   }
 
   while (collection.length) {
