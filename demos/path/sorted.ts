@@ -10,6 +10,10 @@ export default class Sorted<T> {
     this.compare = compare;
   }
 
+  get length(): number {
+    return this.data.length;
+  }
+
   // 取最小的
   take = (): T | null => {
     const { data } = this;

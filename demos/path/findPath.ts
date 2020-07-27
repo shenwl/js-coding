@@ -1,9 +1,15 @@
 import { MapItem, Coordinate } from "./type";
-import sleep from "./sleep";
+import Sorted from './sorted';
+
+function distance(p: Coordinate, end: Coordinate) {
+  return Math.abs((p[0] - end[0]) ** 2 + (p[1] - end[1]) ** 2);
+}
 
 async function bfs(container: HTMLDivElement, map: MapItem[], start: Coordinate, end: Coordinate) {
   // push/shift
-  const queue: Coordinate[] = [start];
+  const collection: Sorted<Coordinate> = new Sorted([start], (a, b) => {
+    return distance(a, end) - distance(b, end);
+  });
   // 记录访问过的坐标
   const visited: any = {
     [`${start[0]}`]: [start[1]],
@@ -15,7 +21,7 @@ async function bfs(container: HTMLDivElement, map: MapItem[], start: Coordinate,
     } else {
       visited[x] = [y];
     }
-    queue.push([x, y]);
+    collection.insert([x, y]);
   }
 
   const insert = async (point: Coordinate, pre: Coordinate) => {
@@ -41,8 +47,8 @@ async function bfs(container: HTMLDivElement, map: MapItem[], start: Coordinate,
     // await sleep(1);
   }
 
-  while (queue.length) {
-    const pre = queue.shift();
+  while (collection.length) {
+    const pre = collection.take();
     let [x, y] = pre;
     if (x === end[0] && (y === end[1])) {
       const path: MapItem[] = [];
