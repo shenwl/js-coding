@@ -17,7 +17,7 @@ export default class Sorted<T> {
     let min = data[0];
     let minIndex = 0;
     for (let i = 1; i < data.length; i++) {
-      if(this.compare(data[i], min) > 0) {
+      if(this.compare(data[i], min) < 0) {
         min = data[i];
         minIndex = i;
       }
