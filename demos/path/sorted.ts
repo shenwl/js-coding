@@ -1,8 +1,11 @@
+/**
+ * 乱序存入元素，有序取出
+ */
 export default class Sorted<T> {
   data: T[];
   compare: Function;
 
-  constructor(data: T[], compare: Function) {
+  constructor(data: T[], compare: (a: T, b: T) => number) {
     this.data = data;
     this.compare = compare;
   }
