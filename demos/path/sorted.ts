@@ -1,5 +1,6 @@
 /**
  * 乱序存入元素，有序取出
+ * @todo: 数据结构用二叉树优化下
  */
 export default class Sorted<T> {
   data: T[];
@@ -21,7 +22,7 @@ export default class Sorted<T> {
     let min = data[0];
     let minIndex = 0;
     for (let i = 1; i < data.length; i++) {
-      if(this.compare(data[i], min) < 0) {
+      if (this.compare(data[i], min) < 0) {
         min = data[i];
         minIndex = i;
       }
@@ -34,5 +35,9 @@ export default class Sorted<T> {
 
   insert(el: T) {
     this.data.push(el);
+  }
+
+  isEmpty = () => {
+    return this.data.length === 0;
   }
 }
