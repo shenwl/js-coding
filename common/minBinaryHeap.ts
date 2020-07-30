@@ -1,5 +1,6 @@
 /**
  * 最小二叉堆(完全二叉树)
+ * 只要替换比对条件，就是最大二叉堆
  */
 export default class MinBinaryHeap<T> {
   data: T[];
@@ -45,7 +46,7 @@ export default class MinBinaryHeap<T> {
     if (elIndex < 0 || (elIndex >= this.size - 1)) return;
     const { data, compare } = this;
 
-    // 小于子元素，就要下沉（与较大的子元素交换）
+    // 大于子元素，就要下沉（与较小的子元素交换）
     let leftIndex = this.left(elIndex);
     let rightIndex = this.right(elIndex);
     while (leftIndex < this.size) {
