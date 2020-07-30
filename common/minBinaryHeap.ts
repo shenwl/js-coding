@@ -19,7 +19,7 @@ export default class MinBinaryHeap<T> {
     if (index == 0) {
       throw Error("index 0 doesn't have parent.");
     }
-    return (index - 1) / 2;
+    return Math.floor((index - 1) / 2);
   }
 
   left(index: number) {
