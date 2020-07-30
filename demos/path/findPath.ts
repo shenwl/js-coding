@@ -1,5 +1,5 @@
 import { MapItem, Coordinate } from "./type";
-import sleep from './sleep';
+import sleep from '../../common/sleep';
 import Sorted from './sorted';
 
 function distance(p: Coordinate, end: Coordinate) {

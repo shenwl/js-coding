@@ -1,6 +1,6 @@
 import findPath from './findPath';
 import { MapItem } from './type';
-import sleep from './sleep';
+import sleep from '../../common/sleep';
 
 void async function () {
   const cacheMap = localStorage.getItem('map');
