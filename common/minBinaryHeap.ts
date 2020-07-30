@@ -97,6 +97,7 @@ export default class MinBinaryHeap<T> {
   private heapify = () => {
     const { data } = this;
     const lastLeafNodeIndex = data.length - 1;
+    if(lastLeafNodeIndex <= 0) return;
     for (let i = this.parent(lastLeafNodeIndex); i >= 0; i--) {
       this.siftDown(i);
     }
