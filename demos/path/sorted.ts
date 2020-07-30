@@ -2,7 +2,6 @@ import MinBinaryHeap from '../../common/minBinaryHeap';
 
 /**
  * 乱序存入元素，有序取出
- * @todo: 数据结构用二叉树优化下
  */
 export default class Sorted<T> {
   heap: MinBinaryHeap<T>;
