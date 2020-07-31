@@ -2,12 +2,23 @@ type Prop = string | number | symbol;
 type ReactiveSet = [Object, Prop];
 
 const handlerMap = new Map<Object, Map<Prop, Set<Function>>>();
+const reactivities = new Map();
+
 let usedReactivities: ReactiveSet[] = [];
 
 export function reactive(obj: any): any {
-  return new Proxy(obj, {
+  if(reactivities.has(obj)) {
+    return reactivities.get(obj);
+  }
+
+  const proxy =  new Proxy(obj, {
     get(obj, key) {
       usedReactivities.push([obj, key]);
+
+      if(typeof obj[key] === 'object') {
+        return reactive(obj[key]);
+      }
+
       return obj[key];
     },
     set(obj, key, value) {
@@ -17,7 +28,10 @@ export function reactive(obj: any): any {
       }
       return true;
     }
-  })
+  });
+  reactivities.set(obj, proxy);
+  reactivities.set(proxy, proxy);
+  return proxy;
 }
 
 export function effect<T>(handler: () => T) {
