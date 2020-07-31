@@ -1,7 +1,7 @@
-type Key = string | number | symbol;
-type ReactiveSet = [Object, Key];
+type Prop = string | number | symbol;
+type ReactiveSet = [Object, Prop];
 
-const handlers = new Map<Object, Map<Key, Function[]>>();
+const handlers = new Map<Object, Map<Prop, Function[]>>();
 let usedReactivities: ReactiveSet[] = [];
 
 export function reactive(obj: any): any {
@@ -11,7 +11,6 @@ export function reactive(obj: any): any {
       return obj[key];
     },
     set(obj, key, value) {
-      console.log(obj, key, value);
       obj[key] = value;
       if(handlers.get(obj)) {
         (handlers.get(obj).get(key) || []).forEach(handler => (handler as Function)());
