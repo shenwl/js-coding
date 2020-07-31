@@ -1,7 +1,7 @@
 type Prop = string | number | symbol;
 type ReactiveSet = [Object, Prop];
 
-const handlers = new Map<Object, Map<Prop, Function[]>>();
+const handlers = new Map<Object, Map<Prop, Set<Function>>>();
 let usedReactivities: ReactiveSet[] = [];
 
 export function reactive(obj: any): any {
@@ -13,7 +13,7 @@ export function reactive(obj: any): any {
     set(obj, key, value) {
       obj[key] = value;
       if(handlers.get(obj)) {
-        (handlers.get(obj).get(key) || []).forEach(handler => (handler as Function)());
+        (handlers.get(obj).get(key)).forEach(handler => (handler as Function)());
       }
       return true;
     }
@@ -29,8 +29,8 @@ export function effect<T>(handler: () => T) {
       handlers.set(obj, new Map());
     }
     if(!handlers.get(obj).has(key)) {
-      handlers.get(obj).set(key, []);
+      handlers.get(obj).set(key, new Set());
     }
-    handlers.get(obj).get(key).push(handler)
+    handlers.get(obj).get(key).add(handler)
   }
 }
