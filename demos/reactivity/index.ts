@@ -16,3 +16,7 @@ console.log(dummy2 === 0);
 counter2.num++
 console.log(dummy1 === 1);
 console.log(dummy2 === 1);
+
+counter.num = 6;
+console.log('dummy show be 6, dummy: ', dummy);
+
