@@ -3,7 +3,6 @@ import Dragable from './dragable';
 const root = document.getElementById('root') as HTMLDivElement;
 
 let ranges: Range[] = [];
-document.addEventListener('selectstart', e => e.preventDefault());
 
 for (let i = 0; i < root.childNodes[0].textContent.length; i++) {
   let range = document.createRange();
@@ -19,7 +18,7 @@ function nearest(x0: number, y0: number): Range {
   for (let range of ranges) {
     const { x, y } = range.getBoundingClientRect();
     const d = (x0 - x) ** 2 + (y0 - y) ** 2;
-    if(d < distance) {
+    if (d < distance) {
       nearestRange = range;
       distance = d;
     }
@@ -27,9 +26,11 @@ function nearest(x0: number, y0: number): Range {
   return nearestRange;
 }
 
-new Dragable({ el: '#dragable', onMove: (e: MouseEvent, dragable) => {
-  const { clientX, clientY } = e;
-  const range = nearest(clientX, clientY);
-  console.log(range);
-  range.insertNode(dragable)
-} });
+new Dragable('#dragable', {
+  onMove: (e: MouseEvent, dragable) => {
+    const { clientX, clientY } = e;
+    const range = nearest(clientX, clientY);
+    range.insertNode(dragable);
+  },
+  disableSelect: true,
+});
