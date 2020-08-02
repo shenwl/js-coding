@@ -41,7 +41,6 @@ export default class Dragable {
       };
 
       document.addEventListener('mousemove', move);
-
       document.addEventListener('mouseup', up);
     });
   }
