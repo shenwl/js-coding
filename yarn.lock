@@ -1010,11 +1010,6 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@types/zrender@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.npm.taobao.org/@types/zrender/download/@types/zrender-4.0.0.tgz#a6806f12ec4eccaaebd9b0d816f049aca6188fbd"
-  integrity sha1-poBvEuxOzKrr2bDYFvBJrKYYj70=
-
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.npm.taobao.org/@webassemblyjs/ast/download/@webassemblyjs/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"

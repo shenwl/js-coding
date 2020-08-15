@@ -10,6 +10,7 @@
     "checkJs": false,
     "moduleResolution": "node",
     "jsx": "react",
+    "allowSyntheticDefaultImports": true,
   },
   "include": [
     "src/",
