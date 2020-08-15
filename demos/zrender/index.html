@@ -9,6 +9,14 @@
 <body>
   <div id="root" style="width:800px;height: 800px;"></div>
   <script>
+    /*
+      zrender绘图流程：
+        1. 引入zrender库
+        2. 创建div容器
+        3. 初始化zrender对象
+        4. 初始化绘图对象
+        5. 调用zrender add方法绘图
+    */
     const zr = zrender.init(document.getElementById('root'));
     const rect = new zrender.Rect({
       shape: {
